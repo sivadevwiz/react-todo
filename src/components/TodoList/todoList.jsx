@@ -11,22 +11,16 @@ class TodoList extends Component {
   };
 
   componentDidMount = () => {
-    console.log(
-      "URL path",
-      this.props.location.pathname.replace("/todos/", "")
-    );
     let URL =
       "http://localhost:3000/todos?userId=" +
       this.props.location.pathname.replace("/todos/", "");
     axios.get(URL).then((res) => {
       this.setState({ todoData: res.data });
-      console.log(res.data);
     });
   };
 
   addTodo = () => {
     const { todoField } = this.state;
-    console.log("todo field..........", todoField);
     axios
       .post(
         `http://localhost:3000/todos/`,
@@ -40,7 +34,6 @@ class TodoList extends Component {
         }
       )
       .then((res) => {
-        console.log(res.data);
         this.setState({ checked: !this.state.checked });
         this.componentDidMount();
       });

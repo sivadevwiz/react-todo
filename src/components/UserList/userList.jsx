@@ -12,7 +12,6 @@ class UserList extends Component {
   componentDidMount = () => {
     axios.get("http://localhost:3000/users").then((res) => {
       this.setState({ userData: res.data });
-      console.log(res.data);
     });
   };
 

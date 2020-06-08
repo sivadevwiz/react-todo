@@ -21,8 +21,6 @@ class TodoRow extends Component {
 
   toggleTodoState = () => {
     const { todo } = this.props;
-    console.log("toggle TODO state", todo.id);
-    // this.setState({ checked: !this.state.checked });
     axios
       .patch(
         `http://localhost:3000/todos/${todo.id}`,
@@ -34,28 +32,24 @@ class TodoRow extends Component {
         }
       )
       .then((res) => {
-        console.log(res.data);
         this.setState({ checked: !this.state.checked });
       });
   };
 
   deleteTodo = () => {
-      const { todo } = this.props;
-    console.log("toggle TODO state", todo.id);
+    const { todo } = this.props;
     axios
       .delete(
         `http://localhost:3000/todos/${todo.id}`,
-       
+
         {
           "Content-Type": "application/json",
         }
       )
       .then((res) => {
-        console.log(res.data);
         window.location.reload();
       });
-
-  }
+  };
 
   render() {
     const { todo } = this.props;
@@ -73,10 +67,11 @@ class TodoRow extends Component {
             {todo.title}
           </label>
           <button type="button" className="close" onClick={this.deleteTodo}>
-  <span className="close" aria-hidden="true" title="delete todo">&times;</span>
-</button>
+            <span className="close" aria-hidden="true" title="delete todo">
+              &times;
+            </span>
+          </button>
         </div>
-        
       </Fragment>
     );
   }
